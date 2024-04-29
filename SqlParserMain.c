@@ -22,6 +22,12 @@ process_user_SQL(void){
 	if (sql_buffer[0] == '\n')
 	    continue;
 
+	/* Detects end-of-file. Terminate the program */
+	if (feof(stdin) != 0){
+	    clearerr(stdin);
+	    break;
+	}
+
 	init_buffer(sql_buffer);
 
 	/* Refer to the first token */
