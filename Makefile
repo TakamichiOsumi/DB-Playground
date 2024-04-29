@@ -27,5 +27,5 @@ $(DB_PLAYGROUND): $(OBJ_COMPONENTS)
 .phony: clean
 
 clean:
-	rm -rf *.o $(DB_PLAYGROUND)
+	rm -rf *.o $(DB_PLAYGROUND) $(DB_PLAYGROUND).dSYM
 	for dir in $(SUBDIRS); do cd $$dir; make clean; cd ..; done

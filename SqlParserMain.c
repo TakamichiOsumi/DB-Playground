@@ -14,6 +14,7 @@ process_user_SQL(void){
     int token_code, parse_state;
 
     while(true){
+
 	printf("DB-Playground=# ");
 
 	fgets(sql_buffer, sizeof(sql_buffer), stdin);
@@ -28,33 +29,22 @@ process_user_SQL(void){
 
 	/* Rewind the token and execute full parse per user command */
 	switch(token_code){
-	    case SQL_SELECT_Q:
-		yyrewind(1);
-		break;
-	    case SQL_UPDATE_Q:
-		yyrewind(1);
-		break;
-	    case SQL_CREATE_Q:
-		yyrewind(1);
-
-		if ((parse_state = create_query_parser()) == true)
-		    printf("parse succeeded\n");
-		else
-		    printf("parse failed\n");
-
-		break;
-	    case SQL_DELETE_Q:
-		yyrewind(1);
-		break;
-	    case SQL_INSERT_Q:
-		yyrewind(1);
+	    case VARIABLE:
+		if (strncmp(lstack.main_data[lstack.stack_pointer - 1].token_val,
+			    "create", strlen("create")) == 0){
+		    yyrewind(1);
+		    if ((parse_state = create_query_parser()) == true)
+			printf("parse succeeded\n");
+		    else
+			printf("parse failed\n");
+		}
 		break;
 	    default:
 		printf("Error : Unrecognized Input\n");
 		break;
 	}
 
-	/* parser_stack_reset(); */
+	parser_stack_reset();
 
     } /* while */
 }
