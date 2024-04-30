@@ -8,6 +8,10 @@
 #include "SqlEnums.h"
 #include "SqlCreateParserCFG.h"
 
+/* For create table command */
+#include "Core/SqlCreate.h"
+extern sql_create_data create_data;
+
 void
 process_user_SQL(void){
     char sql_buffer[512];
@@ -40,9 +44,12 @@ process_user_SQL(void){
 			    "create", strlen("create")) == 0){
 		    yyrewind(1);
 		    if ((parse_state = create_query_parser()) == true)
-			printf("parse succeeded\n");
+			sql_create_process_query(&create_data);
 		    else
 			printf("parse failed\n");
+		    sql_create_data_destroy(&create_data);
+		}else{
+		    printf("Error : Unrecognized command\n");
 		}
 		break;
 	    default:

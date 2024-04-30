@@ -10,8 +10,8 @@ DEPENDENT_LIBS	= -ll -lstack -llinked_list -lmexpr
 
 DB_PLAYGROUND	= exec_db_playground
 
-COMPONENTS	= SqlCreateParserCFG.c
-OBJ_COMPONENTS	= SqlCreateParserCFG.o
+COMPONENTS	= SqlCreateParserCFG.c Core/SqlCreate.c
+OBJ_COMPONENTS	= SqlCreateParserCFG.o SqlCreate.o
 
 all: libraries $(DB_PLAYGROUND)
 
