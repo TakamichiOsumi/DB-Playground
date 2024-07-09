@@ -8,6 +8,7 @@ $ git clone https://github.com/TakamichiOsumi/DB-Playground.git
 $ cd DB-Playground
 $ git submodule update --init --recursive
 $ make
+$ ./exec_db_playground
 ```
 
 ## Current scope of development
