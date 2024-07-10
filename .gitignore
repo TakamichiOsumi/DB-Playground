@@ -3,6 +3,7 @@ G*
 
 # Executables
 exec*
+db_playground
 
 # Prerequisites
 *.d

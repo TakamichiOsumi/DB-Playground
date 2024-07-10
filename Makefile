@@ -9,7 +9,7 @@ SUBDIRS	= $(SUBDIR_MATH_PARSER) $(SUBDIR_B_PLUS_TREE)
 DEPENDENT_LIB_PATH = -L $(CURDIR)/$(SUBDIR_MATH_PARSER) -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Stack/ -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Linked-List/
 DEPENDENT_LIBS	= -ll -lstack -llinked_list -lmexpr
 
-DB_PLAYGROUND	= exec_db_playground
+DB_PLAYGROUND	= db_playground
 
 COMPONENTS	= SqlCreateParserCFG.c Core/SqlCreate.c
 OBJ_COMPONENTS	= SqlCreateParserCFG.o SqlCreate.o
