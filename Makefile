@@ -2,8 +2,9 @@ CC	= gcc
 CFLAGS	= -Wall -O0 -g
 
 SUBDIR_MATH_PARSER = Math-Expression-Parser
+SUBDIR_B_PLUS_TREE = B-Plus-Tree
 
-SUBDIRS	= $(SUBDIR_MATH_PARSER)
+SUBDIRS	= $(SUBDIR_MATH_PARSER) $(SUBDIR_B_PLUS_TREE)
 
 DEPENDENT_LIB_PATH = -L $(CURDIR)/$(SUBDIR_MATH_PARSER) -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Stack/ -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Linked-List/
 DEPENDENT_LIBS	= -ll -lstack -llinked_list -lmexpr
@@ -27,5 +28,5 @@ $(DB_PLAYGROUND): $(OBJ_COMPONENTS)
 .phony: clean
 
 clean:
-	rm -rf *.o $(DB_PLAYGROUND) $(DB_PLAYGROUND).dSYM
-	for dir in $(SUBDIRS); do cd $$dir; make clean; cd ..; done
+	@rm -rf *.o $(DB_PLAYGROUND) $(DB_PLAYGROUND).dSYM
+	@for dir in $(SUBDIRS); do cd $$dir; make clean; cd ..; done
