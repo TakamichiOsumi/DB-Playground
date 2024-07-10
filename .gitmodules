@@ -1,3 +1,6 @@
 [submodule "Math-Expression-Parser"]
 	path = Math-Expression-Parser
 	url = git@github.com:TakamichiOsumi/Math-Expression-Parser.git
+[submodule "B-Plus-Tree"]
+	path = B-Plus-Tree
+	url = https://github.com/TakamichiOsumi/B-Plus-Tree.git
