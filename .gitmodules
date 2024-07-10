@@ -1,0 +1,3 @@
+[submodule "Math-Expression-Parser"]
+	path = Math-Expression-Parser
+	url = git@github.com:TakamichiOsumi/Math-Expression-Parser.git
