@@ -3,6 +3,11 @@
 #include <string.h>
 #include "SqlConst.h"
 #include "SqlCreate.h"
+#include "Catalog.h"
+
+#include "../B-Plus-Tree/b_plus_tree.h"
+
+extern bpt_tree *catalog;
 
 static void
 sql_create_print(sql_create_data *create_data){
@@ -15,6 +20,8 @@ sql_create_print(sql_create_data *create_data){
 	       create_data->column_data[i].type,
 	       create_data->column_data[i].is_primary_key ? "yes" : "no");
     }
+
+    catalog_insert_new_table(NULL, NULL);
 }
 
 void
