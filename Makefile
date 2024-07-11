@@ -4,15 +4,20 @@ CFLAGS	= -Wall -O0 -g
 SUBDIR_MATH_PARSER = Math-Expression-Parser
 SUBDIR_B_PLUS_TREE = B-Plus-Tree
 
-SUBDIRS	= $(SUBDIR_MATH_PARSER) $(SUBDIR_B_PLUS_TREE)
+SUBDIRS	= $(SUBDIR_MATH_PARSER)
+SUBDIRS += $(SUBDIR_B_PLUS_TREE)
 
-DEPENDENT_LIB_PATH = -L $(CURDIR)/$(SUBDIR_MATH_PARSER) -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Stack/ -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Linked-List/
-DEPENDENT_LIBS	= -ll -lstack -llinked_list -lmexpr
+DEPENDENT_LIB_PATH = -L $(CURDIR)/$(SUBDIR_MATH_PARSER)
+DEPENDENT_LIB_PATH += -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Stack
+DEPENDENT_LIB_PATH += -L $(CURDIR)/$(SUBDIR_MATH_PARSER)/Linked-List
+DEPENDENT_LIB_PATH += -L $(CURDIR)/$(SUBDIR_B_PLUS_TREE)
+
+DEPENDENT_LIBS	= -ll -lstack -llinked_list -lmexpr -lbplustree
 
 DB_PLAYGROUND	= db_playground
 
-COMPONENTS	= SqlCreateParserCFG.c Core/SqlCreate.c
-OBJ_COMPONENTS	= SqlCreateParserCFG.o SqlCreate.o
+COMPONENTS	= SqlCreateParserCFG.c Core/SqlCreate.c Core/Catalog.c
+OBJ_COMPONENTS	= SqlCreateParserCFG.o SqlCreate.o Catalog.o
 
 all: libraries $(DB_PLAYGROUND)
 
@@ -28,5 +33,5 @@ $(DB_PLAYGROUND): $(OBJ_COMPONENTS)
 .phony: clean
 
 clean:
-	@rm -rf *.o $(DB_PLAYGROUND) $(DB_PLAYGROUND).dSYM
+	@rm -rf *.o $(DB_PLAYGROUND)*
 	@for dir in $(SUBDIRS); do cd $$dir; make clean; cd ..; done
